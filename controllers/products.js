@@ -59,17 +59,17 @@ exports.viewCreate = (req, res, next) => {
 };
 
 exports.postAddProduct = (req, res, next) => {
-  const { product_name, categories, price, quantity, description } = req.body;
+  const { service, categories, price, quantity, detail } = req.body;
   const { filename } = req.file;
   let path = "/product_image/" + filename;
   const errors = validationResult(req);
 
   const product = new Product(
-    product_name,
+    service,
     categories,
     price,
     quantity,
-    description,
+    detail,
     path
   );
   product
@@ -165,19 +165,19 @@ exports.adminEdit = (req, res, next) => {
     .then((product) => {
       Categories.fetchAll().then((categories) => {
         Cart.fetchAll().then((cart) => {
-          product_name = product.product_name;
+          service = product.service;
           price = product.price;
           category = product.categories;
           res.render("products/edit", {
             pageTitle: "Edit",
             errorMessage: null,
             product_id: product_id,
-            product_name: product_name,
+            service: service,
             category: category,
             categories: categories,
             price: price,
             quantity: product.quantity,
-            description: product.description,
+            detail: product.detail,
             path: product.path,
             product_cart: cart,
           });
@@ -192,16 +192,21 @@ exports.productDetail = (req, res, next) => {
   Product.findById(product_id)
     .then((product) => {
       Cart.fetchAll().then((cart) => {
+<<<<<<< HEAD
+        service = product.service;
+=======
+        service = service;
         product_name = product.product_name;
+>>>>>>> 8f0eec49d0d0543ba9f8df1cbeeabc751a31c43b
         price = product.price;
         res.render("products/product_detail", {
           pageTitle: "Product Detail",
           errorMessage: null,
           product_id: product_id,
-          product_name: product_name,
+          service: service,
           price: price,
           quantity: product.quantity,
-          description: product.description,
+          detail: product.detail,
           path: product.path,
           product_cart: cart,
         });
@@ -213,10 +218,10 @@ exports.productDetail = (req, res, next) => {
 exports.addToCart = (req, res, next) => {
   const { add_to_cart, quantity } = req.body;
   Product.findByName(add_to_cart).then((product) => {
-    product_name = product.product_name;
+    service = product.service;
     price = product.price;
     path = product.path;
-    const cart = new Cart(product_name, price, quantity, path);
+    const cart = new Cart(service, price, quantity, path);
     cart
       .save()
       .then((result) => {
@@ -231,10 +236,10 @@ exports.addToCart = (req, res, next) => {
 exports.postUpdateProduct = (req, res, next) => {
   const {
     product_id,
-    product_name,
+    service,
     price,
     quantity,
-    description,
+    detail,
     categories,
   } = req.body;
   const { filename } = req.file;
@@ -245,19 +250,19 @@ exports.postUpdateProduct = (req, res, next) => {
       pageTitle: "Edit",
       errorMessage: errors.array(),
       product_id: product_id,
-      product_name: product_name,
+      service: service,
       price: price,
       quantity: quantity,
-      description: description,
+      detail: detail,
     });
   }
 
   const product = new Product(
-    product_name,
+    service,
     categories,
     price,
     quantity,
-    description,
+    detail,
     path,
     new ObjectId(product_id)
   );
