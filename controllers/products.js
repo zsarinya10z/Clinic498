@@ -10,7 +10,7 @@ exports.indexView = (req, res, next) => {
   Cart.fetchAll()
     .then((carts) => {
       res.render("products/index", {
-        pageTitle: "it.next",
+        pageTitle: "Index",
         product_cart: carts,
       });
     })
@@ -173,10 +173,7 @@ exports.adminEdit = (req, res, next) => {
             errorMessage: null,
             product_id: product_id,
             service: service,
-            category: category,
             categories: categories,
-            price: price,
-            quantity: product.quantity,
             detail: product.detail,
             path: product.path,
             product_cart: cart,
@@ -192,19 +189,16 @@ exports.productDetail = (req, res, next) => {
   Product.findById(product_id)
     .then((product) => {
       Cart.fetchAll().then((cart) => {
-        service = product.service;
         service = service;
         price = product.price;
         res.render("products/product_detail", {
           pageTitle: "Product Detail",
           errorMessage: null,
-          product_id: product_id,
+          service_id: service_id,
           service: service,
-          price: price,
-          quantity: product.quantity,
-          detail: product.detail,
-          path: product.path,
-          product_cart: cart,
+          detail: service.detail,
+          path: service.path,
+          service_cart: cart,
         });
       });
     })
@@ -212,12 +206,11 @@ exports.productDetail = (req, res, next) => {
 };
 
 exports.addToCart = (req, res, next) => {
-  const { add_to_cart, quantity } = req.body;
-  Product.findByName(add_to_cart).then((product) => {
-    service = product.service;
-    price = product.price;
-    path = product.path;
-    const cart = new Cart(service, price, quantity, path);
+  const { add_to_cart } = req.body;
+  Product.findByName(add_to_cart).then((service) => {
+    service = service;
+    path = service.path;
+    const cart = new Cart(service, path);
     cart
       .save()
       .then((result) => {

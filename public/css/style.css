@@ -773,7 +773,7 @@ hr.dottad_border {
   content: "";
   display: block;
   margin: 20px auto 0;
-  width: 80px;
+  width: 200px;
   height: 5px;
   background: #17a5e9;
 }
