@@ -192,12 +192,8 @@ exports.productDetail = (req, res, next) => {
   Product.findById(product_id)
     .then((product) => {
       Cart.fetchAll().then((cart) => {
-<<<<<<< HEAD
         service = product.service;
-=======
         service = service;
-        product_name = product.product_name;
->>>>>>> 8f0eec49d0d0543ba9f8df1cbeeabc751a31c43b
         price = product.price;
         res.render("products/product_detail", {
           pageTitle: "Product Detail",
