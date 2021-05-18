@@ -10,8 +10,8 @@
 	3.  BASIC
     4.  LOADER
 	5.  HEADER
-	      - Header Top 
-	      - Menu 
+	      - Header Top
+	      - Menu
 	      - Search Bar
 	      - Side Menu
 		  - Fix Header
@@ -30,13 +30,13 @@
 	11. INNER PAGE BANNER
 	12. SIDEBAR
 	     - Sidebar Search
-	13. BLOG	
-         - Blog Detail	
+	13. BLOG
+         - Blog Detail
 	14. CASE STUDIES
 	15. SHOP
     16. FOOTER
 	17. CUSTOM
-		
+
 	-------------------------------------------------------------------*/
 
 /*------------------------------------------------------------------
@@ -3237,7 +3237,7 @@ span.skill {
 }
 
 /*------------------------------------------------------------------
-	17. TESTMONIAL 
+	17. TESTMONIAL
 	-------------------------------------------------------------------*/
 
 .testmonial_section {
@@ -4212,6 +4212,7 @@ img.form-img {
 
 .product-table .bt_main,
 .product-table .bt_success,
+.product-table .bt_edit,
 .product-table .bt_delete {
   font-size: 13px;
   font-weight: 400;
@@ -4322,7 +4323,22 @@ img.form-img {
   height: 45px;
   line-height: 45px;
   margin: 33px 0 0 30px;
-  background: #039ee3;
+  background: #1d9ce1;
+  transition: ease all 0.5s;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.product-table .bt_edit {
+  font-size: 13px;
+  font-weight: 400;
+  min-width: auto;
+  padding: 0px 20px;
+  height: 45px;
+  line-height: 45px;
+  margin: 33px 0 0 30px;
+  background: #ffcf0f;
   transition: ease all 0.5s;
   border: none;
   color: #fff;
@@ -4352,7 +4368,7 @@ img.form-img {
   height: 45px;
   line-height: 45px;
   margin: 33px 0 0 30px;
-  background: #03e333;
+  background: #21e468;
   transition: ease all 0.5s;
   border: none;
   color: #fff;
@@ -4431,6 +4447,21 @@ img.form-img {
   padding: 0 35px;
   cursor: pointer;
   background: #03e333;
+}
+.bt_edit {
+  color: #fff;
+  font-size: 14px;
+  min-width: 148px;
+  float: left;
+  text-align: center;
+  height: 48px;
+  border-radius: 5px;
+  line-height: 50px;
+  font-weight: 500;
+  border: none;
+  padding: 0 35px;
+  cursor: pointer;
+  background: #ffcf0f;
 }
 .bt_delete {
   color: #fff;
