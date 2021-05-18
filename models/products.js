@@ -3,19 +3,15 @@ const getDb = require("../util/database").getDb;
 
 class Products {
   constructor(
-    product_name,
+    service,
     categories,
-    price,
-    quantity,
-    description,
+    detail,
     path,
     id
   ) {
-    this.product_name = product_name;
+    this.service = service;
     this.categories = categories;
-    this.price = price;
-    this.quantity = quantity;
-    this.description = description;
+    this.detail = detail;
     this.path = path;
     this._id = id;
   }
@@ -26,12 +22,12 @@ class Products {
     if (this._id) {
       // Update the product
       dbOp = db
-        .collection("products")
+        .collection("service")
         .updateOne({ _id: new mongodb.ObjectId(this._id) }, { $set: this });
     } else {
-      // Insert product db,products.insertOne({"key1":val1,"key2":val2})
-      dbOp = db.collection("products").insertOne(this);
-      //   db.products.insertOne({"name":"abd"});
+      // Insert product db,service.insertOne({"key1":val1,"key2":val2})
+      dbOp = db.collection("service").insertOne(this);
+      //   db.service.insertOne({"name":"abd"});
     }
     return dbOp
       .then((result) => {
@@ -47,7 +43,7 @@ class Products {
     const db = getDb();
     let dbOp;
     dbOp = db
-      .collection("products")
+      .collection("service")
       .updateMany({ categories: oldName }, { $set: { categories: newName } });
     return dbOp
       .then((result) => {
@@ -62,12 +58,12 @@ class Products {
   static fetchAll() {
     const db = getDb();
     return db
-      .collection("products")
+      .collection("service")
       .find()
       .toArray()
-      .then((products) => {
-        console.log(products);
-        return products;
+      .then((service) => {
+        console.log(service);
+        return service;
       })
       .catch((err) => {
         console.log(err);
@@ -77,7 +73,7 @@ class Products {
   static findByCategories(categories) {
     const db = getDb();
     return db
-      .collection("products")
+      .collection("service")
       .find({ categories: categories })
       .toArray()
       .then((product) => {
@@ -92,7 +88,7 @@ class Products {
   static findById(prodId) {
     const db = getDb();
     return db
-      .collection("products")
+      .collection("service")
       .find({ _id: new mongodb.ObjectId(prodId) })
       .next()
       .then((product) => {
@@ -107,8 +103,8 @@ class Products {
   static findByName(prodName) {
     const db = getDb();
     return db
-      .collection("products")
-      .find({ product_name: prodName })
+      .collection("service")
+      .find({ service: prodName })
       .next()
       .then((product) => {
         console.log(product);
@@ -122,7 +118,7 @@ class Products {
   static deleteById(prodId) {
     const db = getDb();
     return db
-      .collection("products")
+      .collection("service")
       .deleteOne({ _id: new mongodb.ObjectId(prodId) })
       .then((result) => {
         console.log("Deleted");

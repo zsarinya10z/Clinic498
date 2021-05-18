@@ -59,17 +59,15 @@ exports.viewCreate = (req, res, next) => {
 };
 
 exports.postAddProduct = (req, res, next) => {
-  const { product_name, categories, price, quantity, description } = req.body;
+  const { service, categories, detail } = req.body;
   const { filename } = req.file;
   let path = "/product_image/" + filename;
   const errors = validationResult(req);
 
   const product = new Product(
-    product_name,
+    service,
     categories,
-    price,
-    quantity,
-    description,
+    detail,
     path
   );
   product
@@ -83,8 +81,8 @@ exports.postAddProduct = (req, res, next) => {
 };
 
 exports.deleteProduct = (req, res, next) => {
-  const { product_id } = req.params;
-  Product.deleteById(product_id)
+  const { service_id } = req.params;
+  Product.deleteById(service_id)
     .then(() => {
       res.redirect("/stock");
     })
@@ -102,11 +100,11 @@ exports.deleteProductCart = (req, res, next) => {
 
 exports.adminStock = (req, res, next) => {
   Product.fetchAll()
-    .then((products) => {
+    .then((service) => {
       Cart.fetchAll().then((carts) => {
         res.render("products/admin_stock", {
           pageTitle: "Stock",
-          products: products,
+          service: service,
           product_cart: carts,
         });
       });
@@ -118,12 +116,12 @@ exports.adminStock = (req, res, next) => {
 
 exports.viewAllProduct = (req, res, next) => {
   Product.fetchAll()
-    .then((products) => {
+    .then((service) => {
       Categories.fetchAll().then((categories) => {
         Cart.fetchAll().then((cart) => {
           res.render("products/all_products", {
             pageTitle: "Products",
-            products: products,
+            service: service,
             categories: categories,
             product_cart: cart,
           });
@@ -138,13 +136,13 @@ exports.viewAllProduct = (req, res, next) => {
 exports.viewProductByCategories = (req, res, next) => {
   const { categories } = req.params;
   Product.findByCategories(categories)
-    .then((products) => {
+    .then((service) => {
       Categories.fetchAll()
         .then((categories) => {
           Cart.fetchAll().then((cart) => {
             res.render("products/all_products", {
               pageTitle: "Products",
-              products: products,
+              service: service,
               categories: categories,
               product_cart: cart,
             });
@@ -160,25 +158,21 @@ exports.viewProductByCategories = (req, res, next) => {
 };
 
 exports.adminEdit = (req, res, next) => {
-  const { product_id } = req.params;
-  Product.findById(product_id)
-    .then((product) => {
+  const { service_id } = req.params;
+  Product.findById(service_id)
+    .then((service) => {
       Categories.fetchAll().then((categories) => {
         Cart.fetchAll().then((cart) => {
-          product_name = product.product_name;
-          price = product.price;
-          category = product.categories;
+          service = service;
+          category = service.categories;
           res.render("products/edit", {
             pageTitle: "Edit",
             errorMessage: null,
-            product_id: product_id,
-            product_name: product_name,
-            category: category,
+            service_id: service_id,
+            service: service,
             categories: categories,
-            price: price,
-            quantity: product.quantity,
-            description: product.description,
-            path: product.path,
+            detail: service.detail,
+            path: service.path,
             product_cart: cart,
           });
         });
@@ -188,21 +182,19 @@ exports.adminEdit = (req, res, next) => {
 };
 
 exports.productDetail = (req, res, next) => {
-  const { product_id } = req.params;
-  Product.findById(product_id)
+  const { service_id } = req.params;
+  Product.findById(service_id)
     .then((product) => {
       Cart.fetchAll().then((cart) => {
-        product_name = product.product_name;
+        service = service;
         price = product.price;
         res.render("products/product_detail", {
           pageTitle: "Product Detail",
           errorMessage: null,
-          product_id: product_id,
-          product_name: product_name,
-          price: price,
-          quantity: product.quantity,
-          description: product.description,
-          path: product.path,
+          service_id: service_id,
+          service: service,
+          detail: service.detail,
+          path: service.path,
           product_cart: cart,
         });
       });
@@ -212,11 +204,10 @@ exports.productDetail = (req, res, next) => {
 
 exports.addToCart = (req, res, next) => {
   const { add_to_cart, quantity } = req.body;
-  Product.findByName(add_to_cart).then((product) => {
-    product_name = product.product_name;
-    price = product.price;
-    path = product.path;
-    const cart = new Cart(product_name, price, quantity, path);
+  Product.findByName(add_to_cart).then((service) => {
+    service = service;
+    path = service.path;
+    const cart = new Cart(service, path);
     cart
       .save()
       .then((result) => {
@@ -230,11 +221,9 @@ exports.addToCart = (req, res, next) => {
 
 exports.postUpdateProduct = (req, res, next) => {
   const {
-    product_id,
-    product_name,
-    price,
-    quantity,
-    description,
+    service_id,
+    service,
+    detail,
     categories,
   } = req.body;
   const { filename } = req.file;
@@ -244,22 +233,18 @@ exports.postUpdateProduct = (req, res, next) => {
     res.render("products/edit", {
       pageTitle: "Edit",
       errorMessage: errors.array(),
-      product_id: product_id,
-      product_name: product_name,
-      price: price,
-      quantity: quantity,
-      description: description,
+      service_id: service_id,
+      service: service,
+      detail: detail,
     });
   }
 
   const product = new Product(
-    product_name,
+    service,
     categories,
-    price,
-    quantity,
-    description,
+    detail,
     path,
-    new ObjectId(product_id)
+    new ObjectId(service_id)
   );
   product
     .save()
