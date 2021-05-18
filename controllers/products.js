@@ -187,7 +187,6 @@ exports.productDetail = (req, res, next) => {
     .then((product) => {
       Cart.fetchAll().then((cart) => {
         service = service;
-        price = product.price;
         res.render("products/product_detail", {
           pageTitle: "Product Detail",
           errorMessage: null,
