@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('includes/head.ejs') %>
+  <body id="default_theme" class="it_error">
+    <!-- loader -->
+    <div class="bg_load">
+      <img class="loader_animation" src="images/loaders/loader_1.png" alt="#" />
+    </div>
+    <!-- end loader -->
+    <!-- header -->
+    <header id="default_header" class="header_style_1">
+      <!-- header bottom -->
+      <div class="header_bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+              <!-- logo start -->
+              <div class="logo">
+                <a href="/"
+                  ><img src="/images/logos/it_logo.png" alt="logo"
+                /></a>
+              </div>
+              <!-- logo end -->
+            </div>
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+              <!-- menu start -->
+              <div class="menu_side">
+                <div id="navbar_menu">
+                  <ul class="first-ul">
+                    <li>
+                      <a class="active" href="/">Home</a>
+                    </li>
+                    <li>
+                      <a href="#">Users</a>
+                      <ul>
+                        <li><a href="/products">All Product</a></li>
+                        <li><a href="#">Comming soon !</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#">Admin</a>
+                      <ul>
+                        <li><a href="/stock">Stock</a></li>
+                        <li><a href="/create">New Product</a></li>
+                        <li><a href="/categories">Categories Operation</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- menu end -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- header bottom end -->
+    </header>
+
+    <!-- end header -->
+    <!-- inner page banner -->
+    <div id="inner_banner" class="section inner_banner_section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="full">
+              <div class="title-holder">
+                <div class="title-holder-cell text-left">
+                  <h1 class="page-title">404 Error</h1>
+                  <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li>Pages</li>
+                    <li class="active">404 Error</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end inner page banner -->
+    <!-- section -->
+    <div class="section padding_layout_1">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="center margin_bottom_30_all">
+              <img
+                class="margin_bottom_30_all"
+                src="/images/it_service/404_error_img.png"
+                alt="#"
+              />
+            </div>
+            <div class="heading text_align_center">
+              <h2>OOOPS, THIS PAGE COULD NOT BE FOUND!</h2>
+            </div>
+            <div class="center">
+              <a class="btn sqaure_bt light_theme_bt" href="/">Back Home</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end section -->
+    <!-- footer -->
+    <%- include('includes/footer.ejs') %>
+    <!-- end footer -->
+    <!-- js section -->
+    <%- include('includes/low_script.ejs') %>
+  </body>
+</html>

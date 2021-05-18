@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../includes/head.ejs') %>
+  <body id="default_theme" class="it_serv_shopping_cart shopping-cart">
+    <!-- loader -->
+    <!-- <div class="bg_load">
+      <img
+        class="loader_animation"
+        src="/images/loaders/leaf.png"
+        alt="#"
+      />
+    </div> -->
+    <!-- end loader -->
+    <!-- header -->
+    <%- include('../includes/header.ejs') %>
+    <!-- end header -->
+    <!-- inner page banner -->
+    <%- include('../includes/inner_banner.ejs') %>
+    <!-- end inner page banner -->
+    <div class="section padding_layout_1 Shopping_cart_section">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-12">
+            <div class="product-table">
+              <div class="col-md-12">
+                <a class="btn main_bt btn_create" href="/create"> Create </a>
+              </div>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Travel</th>
+                    <!-- <th>Quantity</th>
+                    <th class="text-center">Price</th>
+                    <th class="text-center">Action</th>
+                  </tr> -->
+                </thead>
+                <tbody>
+                  <% if (products.length > 0) { %> <% products.map((product,
+                  index) => { %>
+                  <tr>
+                    <td class="col-md-6">
+                      <div class="media">
+                        <a
+                          class="thumbnail pull-left"
+                          href="<%- '/productDetail/'+product._id%>"
+                        >
+                          <img
+                            class="media-object"
+                            src="<%- product.path%>"
+                            alt="#"
+                        /></a>
+                        <div class="media-body">
+                          <h4 class="media-heading">
+                            <a href="<%- '/productDetail/'+product._id%>"
+                              ><%= product.product_name%></a
+                            >
+                          </h4>
+                        </div>
+                      </div>
+                    </td>
+                    <!-- <td class="col-md-2" style="text-align: center">
+                      <p class="price_table"><%= product.quantity%></p>
+                    </td>
+                    <td class="col-sm-2 col-md-2 text-center">
+                      <p class="price_table"><%= product.price%></p>
+                    </td>
+                    <td class="col-md-2">
+                      <div class="col-md-12" style="display: flex">
+                        <a
+                          type="button"
+                          class="bt_main"
+                          href="<%- '/editProduct/'+product._id%>"
+                        > -->
+                          <i class="fa fa-pencil"></i>
+                        </a>
+                        <a
+                          type="button"
+                          href="<%- '/delete/'+product._id%>"
+                          onclick="return confirm('Are you sure you want to delete this item?');"
+                          class="bt_main"
+                        >
+                          <i class="fa fa-trash"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  <% }) %> <% } else { %>
+                  <tr>
+                    <td colspan="4">
+                      <h1>No travel Found!</h1>
+                    </td>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- js section -->
+    <%- include('../includes/full_script.ejs') %>
+    <!-- zoom effect -->
+    <script src="/js/hizoom.js"></script>
+    <script>
+      $(".hi1").hiZoom({
+        width: 300,
+        position: "right",
+      });
+      $(".hi2").hiZoom({
+        width: 400,
+        position: "right",
+      });
+    </script>
+  </body>
+</html>

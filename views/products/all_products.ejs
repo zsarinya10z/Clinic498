@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../includes/head.ejs') %>
+  <body id="default_theme" class="it_shop_list">
+    <!-- loader -->
+    <!-- <div class="bg_load">
+      <img
+        class="loader_animation"
+        src="/images/loaders/leaf.png"
+        alt="#"
+      />
+    </div> -->
+    <!-- end loader -->
+    <!-- header -->
+    <%- include('../includes/header.ejs') %>
+    <!-- end header -->
+    <!-- inner page banner -->
+    <!-- <div id="inner_banner" class="section inner_banner_section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="full">
+              <div class="title-holder">
+                <div class="title-holder-cell text-left">
+                  <h1 class="page-title">Products</h1>
+                  <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li class="active">Products</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- end inner page banner -->
+    <!-- filter -->
+    <div class="row">
+      <div class="container">
+        <div class="col-md-4 col-sm-12">
+          <div class="full margin_bottom_30">
+            <div class="accordion border_circle">
+              <div class="bs-example">
+                <div class="panel-group" id="accordion">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <p class="panel-title">
+                        <a
+                          data-toggle="collapse"
+                          data-parent="#accordion"
+                          href="#collapseTwo"
+                          ><i class="fa fa-filter" aria-hidden="true"></i>
+                          Catagories<i class="fa fa-angle-down"></i
+                        ></a>
+                      </p>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        <ul class="first-ul">
+                          <li>
+                            <ul>
+                              <li>
+                                <a href="/products"
+                                  ><div class="col-md-12 filter-div">
+                                    All
+                                  </div></a
+                                >
+                              </li>
+                              <% if(categories.length > 0){
+                              categories.map((categories,index)=>{%>
+                              <li>
+                                <a
+                                  href="/products/<%= categories.categories_name %>"
+                                  ><div class="col-md-12 filter-div">
+                                    <%= categories.categories_name %>
+                                  </div></a
+                                >
+                              </li>
+                              <% }) } %>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end filter -->
+    <!-- section -->
+    <div class="section padding_layout_1 product_list_main">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <% if (products.length > 0) { %>
+              <!-- loop -->
+              <% products.map((product, index) => { %>
+              <a href="<%- '/productDetail/'+product._id%>">
+                <div class="col-md-4 col-sm-6 col-xs-12 margin_bottom_30_all">
+                  <div class="product_list">
+                    <div class="product_img">
+                      <img
+                        class="img-responsive"
+                        src="<%= product.path %>"
+                        alt=""
+                      />
+                    </div>
+                    <div class="product_detail_btm">
+                      <div class="center">
+                        <h4>
+                          <a href="it_shop_detail.html"
+                            ><%= product.product_name %></a
+                          >
+                        </h4>
+                      </div>
+                      <div class="starratin">
+                        <div class="center">
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star-o" aria-hidden="true"></i>
+                        </div>
+                      </div>
+                      <div class="product_price">
+                        <p>
+                          <span class="old_price"
+                            >$<%= product.price %>0.00</span
+                          >
+                          –
+                          <span class="new_price"
+                            >$<%= product.price %>.00</span
+                          >
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <% })} %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end section -->
+    <!-- section -->
+    
+    <!-- end section -->
+    <!-- section -->
+   
+    <!-- end section -->
+    <!-- section -->
+  
+    <!-- end section -->
+    <!-- footer -->
+    <%- include('../includes/footer.ejs') %>
+    <!-- end footer -->
+    <!-- js section -->
+    <%- include('../includes/full_script.ejs') %>
+  </body>
+</html>
