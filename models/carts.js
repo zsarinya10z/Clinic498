@@ -2,10 +2,8 @@ const mongodb = require("mongodb");
 const getDb = require("../util/database").getDb;
 
 class Carts {
-  constructor(product_name, price, quantity, path, id) {
-    this.product_name = product_name;
-    this.price = price;
-    this.quantity = quantity;
+  constructor(service, path, id) {
+    this.service = service;
     this.path = path;
     this._id = id;
   }
@@ -51,7 +49,7 @@ class Carts {
     const db = getDb();
     return db
       .collection("cart")
-      .deleteOne({ product_name: prodName })
+      .deleteOne({ service: prodName })
       .then((result) => {
         console.log("Deleted");
       })
