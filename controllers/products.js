@@ -189,15 +189,17 @@ exports.productDetail = (req, res, next) => {
   Product.findById(product_id)
     .then((product) => {
       Cart.fetchAll().then((cart) => {
+        service = product.service;
         service = service;
         price = product.price;
         res.render("products/product_detail", {
           pageTitle: "Product Detail",
           errorMessage: null,
-          service_id: service_id,
+          product_id: product_id,
           service: service,
-          detail: service.detail,
-          path: service.path,
+          detail: product.detail,
+          path: product.path,
+          product_cart: cart,
           service_cart: cart,
         });
       });
