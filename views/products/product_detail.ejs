@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../includes/head.ejs') %>
+  /* Bootstrap css */
 
+<%- include('../includes/head.ejs') %>
   <body id="default_theme" class="it_shop_detail">
+
+    
     <!--
     <div class="bg_load">
       <img
@@ -61,6 +64,57 @@
                         <%= detail %><br/>
                       </p>
                       <span class="stock">2 in stock</span> -->
+                      <select id="client_id" type="dropdown-toggle" class="form-control newFont" name="เวลา">
+                        <optgroup class="newFont">
+                            >
+                            <option value="1" {{ $time == 1 ? 'selected' : '' }}>10.00 น.</option>
+                            <option value="2" {{ $time == 2 ? 'selected' : '' }}>11.00 น.</option>
+                            <option value="3" {{ $time == 3 ? 'selected' : '' }}>13.00 น.</option>
+                            <option value="4" {{ $time == 4 ? 'selected' : '' }}>14.00 น.</option>
+                            <option value="5" {{ $time == 5 ? 'selected' : '' }}>15.00 น.</option>
+                            <option value="6" {{ $time == 6 ? 'selected' : '' }}>16.00 น"</option>
+                        </optgroup>
+                    </select><br>
+
+                      <select id="client_id" type="dropdown-toggle" class="form-control newFont" name="วัน">
+                        <optgroup class="newFont">
+                            >
+                            <option value="1" {{ $day == 1 ? 'selected' : '' }}>วันเสาร์</option>
+                            <option value="2" {{ $day == 2 ? 'selected' : '' }}>วันจันทร์</option>
+                            <option value="3" {{ $day == 3 ? 'selected' : '' }}>วันอังคาร</option>
+                            <option value="4" {{ $day == 4 ? 'selected' : '' }}>วันพุธ</option>
+                            <option value="5" {{ $day == 5 ? 'selected' : '' }}>วันพฤหัสบดี</option>
+                            <option value="6" {{ $day == 6 ? 'selected' : '' }}>วันศุกร์</option>
+                        </optgroup>
+                    </select><br>
+                    
+                      <select id="client_id" type="dropdown-toggle" class="form-control newFont" name="เดือน">
+                        <optgroup class="newFont">
+                          
+                            <option value="1" {{ $mount == 1 ? 'selected' : '' }}>มกราคม</option>
+                            <option value="2" {{ $mount == 2 ? 'selected' : '' }}>กุมภาพันธ์</option>
+                            <option value="3" {{ $mount == 3 ? 'selected' : '' }}>มีนาคม</option>
+                            <option value="4" {{ $mount == 4 ? 'selected' : '' }}>เมษายน</option>
+                            <option value="5" {{ $mount == 5 ? 'selected' : '' }}>พฤษภาคม</option>
+                            <option value="6" {{ $mount == 6 ? 'selected' : '' }}>มิถุนายน</option>
+                            <option value="7" {{ $mount == 7 ? 'selected' : '' }}>กรกฎาคม</option>
+                            <option value="8" {{ $mount == 8 ? 'selected' : '' }}>สิงหาคม</option>
+                            <option value="9" {{ $mount == 9 ? 'selected' : '' }}>กันยายน</option>
+                            <option value="10" {{ $mount == 10 ? 'selected' : '' }}>ตุลาคม</option>
+                            <option value="11" {{ $mount == 11 ? 'selected' : '' }}>พฤศจิกายน</option>
+                            <option value="12" {{ $mount == 12 ? 'selected' : '' }}>ธันวาคม</option>
+                        </optgroup>
+                    </select><br>
+                    
+<!--                       
+                      <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                        <label class="control-label" for="timepicker">Select Time</label>
+                        <input type="text" class="form-control" id="timepicker">
+                      </div> -->
+
+
+
+
 
                       <form method="post" action="/addToCart">
                         <div class="quantity">
@@ -72,26 +126,7 @@
                         </button>
                       </form>
                     </div>
-                    <div class="share-post">
-                      <a href="#" class="share-text">Share</a>
-                      <ul class="social_icons">
-                        <li>
-                          <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        </li>
-                        <li>
-                          <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                        </li>
-                        <li>
-                          <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                        </li>
-                        <li>
-                          <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                        </li>
-                        <li>
-                          <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                        </li>
-                      </ul>
-                    </div>
+                   
                   </div>
                 </div>
                 <div class="row">
@@ -225,6 +260,13 @@
               $(".hi2").hiZoom({
                 width: 400,
                 position: "right",
+              });
+            </script>
+                        <!-- jquery JS -->
+         
+              // Time picker only
+              $('#timepicker').datetimepicker({
+                format: 'LT'
               });
             </script>
   </body>
